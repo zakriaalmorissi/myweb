@@ -1,0 +1,58 @@
+{% extends "home/layout.html"%}
+
+{% block main %}
+
+        <div>
+            <section class="first-part">
+                <div class="main-content">
+                    <div class="container">
+                        {% for post in posts %}
+                        <div class="post-content">
+                            <p>{{post.text}}</p>
+                            {% if post.image %}
+                            <img src="{{post.image.url}}" alt="">
+                            {% endif %}
+        
+                        </div>
+                        {% endfor %}
+        
+        
+        
+                    </div>
+                    <div class="right-post">
+
+                        {% for one in posts %}
+                            <div class="right-content">
+                        
+                                <p>{{ one.text}}</p>
+
+                                {% if one.image_2 %}
+                                    <img src="{{one.image_2.url}}" alt="">
+                                {% endif %}
+
+                                <p>{{one.text_2}}</p>
+
+                                {% if one.image_3 %}
+                                     <img src="{{one.image_3}}" alt="">
+                                {% endif %}
+                                <p>{{post.text_3}}</p>
+                                <a href="{% url 'post' one.id %}">read more</a>
+                        
+                            </div>
+                        {% endfor %}    
+                    </div>
+                </div>
+        
+            </section>
+            <section class="second-part">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, saepe rem! Veritatis sequi officia quam
+                    corporis.
+                    Quasi, aperiam! Nihil laudantium perspiciatis quis porro minima laboriosam minus maxime illum, odit
+                    voluptas?</p>
+        
+                </section>
+
+        </div>
+
+
+{% endblock %}

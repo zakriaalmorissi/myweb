@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+  
+</head>
+
+<body >
+    <header>
+        <div class="off-screen">
+            <ul>
+                <li>home</li>
+                <li>account</li>
+                <li>about</li>
+                <li>
+                    <label for="toggleMode">dark mode</label>
+                    <input type="checkbox" id="toggleMode" class="toggle">              
+                 </li>
+            </ul>
+            
+        </div>
+        <nav>
+            <div class="ham-menu ">
+                <span class="bar-top"></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="web-name">
+                <h2>Zakweb</h2>
+            </div>
+            <div>
+
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+ 
+
+    <script>
+        const hamMenu = document.querySelector(".ham-menu");
+        const showScreenMenu = document.querySelector(".off-screen");
+        hamMenu.addEventListener('click', () => {
+            hamMenu.classList.toggle('active')
+            showScreenMenu.classList.toggle('active')
+        })
+        const toggleDark = document.getElementById('toggleMode');
+        document.querySelector('#toggleMode').innerHTML = 'dark on';
+        toggleDark.addEventListener('click',()=>{
+            
+            document.body.classList.toggle('dark');
+            const nameButtom = document.querySelector('#toggleMode').value;
+            console.log(nameButtom)
+        })
+    </script>
+
+</body>
+
+</html>
