@@ -4,18 +4,17 @@
 
 <div>
     <section class="first-part">
-            <div>
-                {% if form.image %}
-                <img src="{{form.image.url}}" alt="">
-                {% endif %}
-                <h2>{{from.title}}</h2>
-                <p>{{form.text}}</p>
-                {% if form.image_2 %}
-                <p> {{from.text_2}}<img src="{{form.image_2.url}}" alt=""></p>
-                {% endif %}
-                
-            </div>
-            
+        <div>
+            <h2>{{form.title}}</h2>
+            <p>{{form.text}}</p>
+            <img src="{{form.image.url}}" alt="">
+            {% if form.image_2 %}
+            <p> {{from.text_2}}</p>
+            <img src="{{form.image_2.url}}" alt="">
+            {% endif %}
+
+        </div>
+
     </section>
 
 </div>

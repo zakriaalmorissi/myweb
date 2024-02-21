@@ -1,268 +1,437 @@
+/* Define CSS variables for reusability */
+:root {
+    --bg-color: rgba(255, 255, 255, 0.832);
+    --shadow-color: rgb(184, 184, 184);
+    --nav-bg-color: rgb(17, 122, 233);
+    --main-bg-color: rgba(252, 252, 252, 0.63);
+    --text-color: white;
+    --body-text-color: black;
+
+}
+
+/* Apply default styles to all elements */
 * {
-    margin: 0;
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
-/* set global variables for dark and light mode colors */
- :root{
-    --primary-page-bg: white;
-    --primary-text-color : black;
-    --nave-bg-color: #0986fb;
-    --aside-bg-color : rgb(251, 248, 238);
-    --read-more : #0986fb;
-    --right-content : aliceblue;
-    
- }
-body.dark{
-    --primary-page-bg: rgb(19, 18, 18);
-    --primary-text-color: white;
-    --nave-bg-color: rgb(55, 53, 53);
-    --aside-bg-color: rgb(54, 54, 54);
-    --read-more : rgb(59, 59, 204);
-    --right-content : rgba(0, 0, 0, 0.411);
+
+/* Apply font styles to the entire document */
+body {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--body-text-color);
+    overflow-x: hidden;
+}
+
+/* set the dark theme colors*/
+body.dark {
+    --bg-color: rgb(19, 18, 18);
+    --shadow-color: rgba(0, 0, 0, 0.337);
+    --nav-bg-color: rgba(46, 46, 46, 0.666);
+    --main-bg-color: rgba(0, 0, 0, 0.279);
+    --text-color: white;
+    --body-text-color: white;
 
 }
+
+/* Styling for the navigation bar */
 nav {
-    background-color: var(--nave-bg-color);
-    padding: 1rem;
     display: flex;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    padding: 1rem;
+    background-color: var(--nav-bg-color);
+    color: var(--text-color);
     align-items: center;
-    gap: 30px;
-    box-shadow: 1px 1px 1px;
+    box-shadow: 4px 4px 4px var(--shadow-color);
+    width: 100%;
+    /* Stretch to full width */
 }
 
+/* Positioning for specific elements within the navigation bar */
 .ham-menu {
-    padding: 1rem;
+    /* ham-menu for the slide bar */
     position: relative;
-    height: 10px;
-    width: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 1%;
+    /* Added margin-left for better alignment */
+}
+.ham-menu:hover {
+    background-color: rgba(240, 248, 255, 0.527);
 }
 
 .ham-menu span {
-    background-color: whitesmoke;
     position: absolute;
-    height: 4px;
-    width: 80%;
-    border-radius: 10px;
-    cursor: pointer;
-    top: 60%;
+    margin-top: 9%;
     left: 50%;
+    background-color: white;
+    height: 2px;
+    width: 30px;
+    border-radius: 7px;
+    cursor: pointer;
     transform: translate(-50%, -50%);
-    transition: transform .6s, opacity .8s, top .6s;
-
+    transition: transform .6s, opacity .8s, top .4s;
 }
 
 .ham-menu span:nth-child(1) {
-    top: 20%;
+    top: 25%;
 }
 
 .ham-menu span:nth-child(2) {
-    top: 40%;
+    top: 41%;
 }
 
 .ham-menu span:nth-child(3) {
-    top: 59%;
+    top: 56%;
 }
 
+/* set a role when the ham menu is active */
+.ham-menu.active {
+    left: calc(150px + 1%);
+    /* Adjusted for off-screen menu width and margin */
+}
 
-.ham-menu.active .bar-top {
+.ham-menu.active span:nth-child(1) {
     transform: translate(-50%, -50%) rotate(315deg);
     top: 50%;
 }
 
 .ham-menu.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.ham-menu.active span:nth-child(3) {
-    transform: translate(-50%, -50%) rotate(225deg);
+    transform: translate(-50%, -50%) rotate(-315deg);
     top: 50%;
 }
 
-
-.web-name {
-    justify-items: end;
-    display: flex;
-    justify-content: flex-end;
-    margin-left: 11rem;
+.ham-menu.active span:nth-child(3) {
+    opacity: 0;
 }
 
-.web-name h2 {
-    color: white;
+nav h1 {
+    position: relative;
+    left: 40%;
 }
 
-/* Off-screen Navigation */
+nav h2 {
+    position: relative;
+    left: 1%;
+}
 
+nav h3 {
+    margin-left: auto;
+    /* Aligns h3 to the right */
+}
+
+/* the search bar */
+.search-div {
+    position: relative;
+    left: 42%;
+    margin-top: 7rem;
+    background-color: transparent;
+    align-items: center;
+
+}
+
+.search-div input {
+    position: relative;
+    left: -7%;
+    border-width: 0.5px;
+    border-color: var(--body-text-color);
+    border-radius: 8px;
+    outline: none;
+    width: 37%;
+    padding: 0.30rem;
+    font-size: 1rem;
+    background-color: white;
+
+}
+
+/*  the side off-screen menu */
 .off-screen {
     position: fixed;
-    top: 0;
-    left: -75%;
-    background-color: var(--nave-bg-color);
-    height: 100vh;
-    width: auto;
-    box-shadow: 1px 0px 0px black;
+    z-index: 2;
+    top: -1%;
+    left: -100%;
+    width: 150px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--nav-bg-color) ;
+    color: var(--text-color);
     transform: translate(1%, 0%);
-    transition: transform .7s, opacity .5s, left .6s;
+    transition: transform .7s, opacity .5s, left .8s;
+}
+
+.off-screen ul {
+    position: relative;
+    color: var(--text-color);
+    top: 2rem;
+    gap: 1rem;
+    right: 2.3rem;
+    display: inherit;
+    flex-direction: column;
+    list-style: none;
+}
+
+.off-screen ul a {
+    text-decoration: none;
+    color: var(--text-color);
+    
+
 
 }
 
-.off-screen ul li {
-    display: flex;
-    flex-direction: column;
-    padding: 17px;
-    margin-right: 1rem;
-    font-size: medium;
-    color: white;
-    position: relative;
+.off-screen li a:hover{
+    width:7rem;
+    border-radius: 7px;
+    background-color: rgb(180, 176, 176);
 }
 
 .off-screen.active {
     left: 0;
-    top: 7%;
 
 }
-.toggle {
+
+/* switch mode */
+.switch {
+    position: relative;
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    top: 8rem;
+
+}
+
+#toggleSwitch {
     appearance: none;
     position: relative;
-    width: 50px;
-    height: 30px;
-    border-radius: 25px;
     background-color: gray;
-    transition: background .3s;
+    width: 40px;
+    height: 23px;
     outline: none;
-    cursor: pointer;
+    border-radius: 10px;
+
 }
 
-.toggle::after {
+#toggleSwitch::after {
     content: '';
-    background-color: white;
     position: absolute;
-    top: 50%;
-    left: 30%;
-    transform: translate(-50%, -50%);
+    top: 9%;
+    left: 10%;
+    background-color: azure;
     width: 1.25rem;
     height: 1.25rem;
     border-radius: 50%;
+    cursor: pointer;
     transition: left .3s;
 }
 
-.toggle:checked {
-    background-color: rgb(68, 230, 59);
+#toggleSwitch:checked {
+    background-color: green;
 }
 
-.toggle:checked::after {
-    left: 70%;
+#toggleSwitch:checked::after {
+    left: 40%;
 }
-/* main content for the body */ 
+
+
+/* the main content of the page */
 main {
-    height: 200vh;
-    color: var(--primary-text-color);
-}
-.first-part{
-    border: #d5e6f5 solid;
-    background-color: var(--primary-page-bg);
-    box-shadow: 2px 2px 2px 5px white ;
-    padding: 10px;
-    margin-left: 0.5rem;
-    margin-top: 0.4rem;
-    margin-bottom: 0.1rem;
-    border-radius: 8px;
-    color: var(--primary-text-color);
-
-}
-
-.main-content {
-    display: flex;
-    gap: 10px;
-    
-    
-}
-
-.container {
-    background-color: var(--aside-bg-color);
-    display:flex;
-    flex-direction: column;
-    gap: 10px;
-    box-shadow: 2px 2px 2px  var(--primary-page-bg);
-    color: var(--primary-text-color);
-}
-.post-content {
-     font-family: Arial, Helvetica, sans-serif;
-     width: auto;
-     height: auto;
-     justify-content: space-between;
-     display: flex;
-     flex-direction: column;
-     gap: 10px;
-     box-shadow: 4px 4px 4px 4px var(--primary-page-bg);
-     padding: 1rem;
-     border-radius: 7px;
-
-}
-.post-content p {
-    padding: 10px;
-    line-height: 2rem;
-}
-.post-content img{
-    width: 450px;
-    margin: 10px;
-    
-    
-}
-.right-post{
     display: flex;
     flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
     width: 100%;
-    
-}
- .right-content {
-    font-family: Arial, Helvetica, sans-serif;
-    flex-grow: 1;
-    padding: 10px;
-    margin-top: 5px;
-    margin-right: 10px;
-    height: auto;
-    line-height: 2rem;
-    width: 100%;
-    background-color: var(--right-content);
-    position: relative;
-    
-    
-
-
- }
- .right-content p {
-        margin-bottom: 2rem ;
- }
- .right-content a {
-    background-color: var(--read-more);
-    color : white;
-    border-radius: 7px;
-    padding: 7px;
-    top: 80%;
-    cursor: pointer;
-    position: absolute;
-    margin-top: 2rem;
-
- }
- .right-content p :hover{
-    background-color: #0956fb;
- }
-
-/* second part styling */
-
-.second-part {
-    background-color: var(--primary-page-bg);
-    display: flex;
-    border-radius: 8px;
     align-items: center;
     justify-content: center;
+    background-color: var(--main-bg-color);
+
+}
+.section {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2%;
+    color: black;
+    border-bottom: 2px solid rgb(127, 212, 251);
+    width: 100%;
     padding: 1rem;
-    font-family: Arial, Helvetica, sans-serif;  
-    border: #d5e6f5 solid;
-    box-shadow: 2px 2px 2px 5px white;
-    margin-left: 0.5rem;
+    overflow: hidden;
+
+}
+.myprofile {
+    background-color: rgba(227, 248, 255, 0);
+    color: var(--body-text-color);
+    position: relative;
+    margin-left: 4%;
+    width: 18rem;
+    min-width: 12rem;
+    height: 22rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px var(--shadow-color);
+
+
+}
+.myprofile img {
+    margin-top: 1rem;
+    margin-bottom: 0.9rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+.myprofile label{
+    color: gray;
+}
+.myprofile p {
+    margin-top: 0.3rem;
+    margin-bottom: 0.8rem;
+    width: 90%;
+    padding: 0.3rem;
+    font-size: small;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(134, 134, 134, 0.983);
+}
+.myprofile p:hover{
+    border: 1px solid;
+    border-radius: 7px;
+    background-color: rgba(228, 240, 250, 0.492);
+}
+
+
+
+.introduction {
+    background-color: whitesmoke;
+    margin-left: 7%;
+    width: 60%;
+    min-width: 20rem;
+    height: 19rem;
+    border-radius: 4px;
+    padding: 1rem;
+    overflow-y: scroll;
+    scroll-behavior: 1px ;
+
+}
+.introduction h2 {
+    margin-bottom: 1rem;
+}
+.introduction p {
+    position: relative;
+    width: 100%;
+    line-height: 1.5rem;
+    line-break: auto;
+    margin-bottom: 1rem;
+    
+}
+
+.section-one {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 1%;
+    width: 90%;
+    border-bottom: 1px solid rgb(86, 202, 237);
+    padding: 1rem;
+    border-radius: 7px;
+    overflow-x: scroll;
+    
+}
+.post {
+    color: white;
+    position: relative;
+    width: 17rem;
+    height: 21rem;
+    object-fit: cover;
+    
+
+}
+.post:hover {
+    box-shadow: 0px 0px 10px rgb(125, 238, 255);
+    image-resolution: 10px;
+
+}
+
+.post a {
+    display: flex;
+    z-index: 100;
+    flex-direction: column;
+    border: 1px solid gray;
+    border-radius: 5px;   
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    font-size: 0.7rem;
+    justify-content: center;
+}
+
+.post img {
+    width: 100%;
+    height: 17rem;
+    object-fit: cover;
+    overflow: hidden;
+
+}
+.post h2 {
+    color:white;
+    padding: 0.7rem;
+    
+}
+
+.section-two {
+    border-top: 2px solid rgb(86, 202, 237);
+    padding: 1rem;
+    width: 100%;
+    
+}
+.section-two h1 {
+    position: relative;
+    left: 45%;
+}
+
+.section-two-container {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    margin-left: 20%;
+    background-color: gray;
+    margin-right: 20%;
+    
+    
+}
+.left-container {
+    display: flex;
+    flex-direction: column;
+    height: 49rem;
+    width: 20rem;
+    background-color: transparent;
+    box-shadow: 0px 0px 1px var(--shadow-color);
+}
+.left-container a {
+    display: flex;
+    width: 100%;
+    height: 25%;
+    border-bottom: 0.5px solid;
+    cursor: pointer;
+}
+.left-container img{
+    width: 40%;
+    height: 100%;
+}
+
+
+video {
+
+    width: 100%;
+
 }

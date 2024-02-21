@@ -4,64 +4,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomePage</title>
+    <title>Document</title>
     {% load static %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
-  
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 
-<body >
+<body class="">
     <header>
+
+        <nav>
+            <div class="ham-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <h1>Zakweb</h1>
+            <h3>logout</h3>
+        </nav>
         <div class="off-screen">
             <ul>
-                <li>home</li>
-                <li>account</li>
-                <li>about</li>
-                <li>
-                    <label for="toggleMode">dark mode</label>
-                    <input type="checkbox" id="toggleMode" class="toggle">              
-                 </li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
-            
-        </div>
-        <nav>
-            <div class="ham-menu ">
-                <span class="bar-top"></span>
-                <span></span>
-                <span></span>
+            <div class="switch">
+                <label for="toggleSwitch">Dark mode</label>
+                <input type="checkbox" id="toggleSwitch" role="button">
             </div>
-            <div class="web-name">
-                <h2>Zakweb</h2>
-            </div>
-            <div>
 
-            </div>
-        </nav>
+        </div>
+
+        <div id="search-input" class="search-div">
+            <input type="text" id="search" placeholder="Search.." name="search_query" autocomplete="off"
+                spellcheck="false" role="searchbox">
+        </div>
+
+
+        </div>
+
     </header>
+
     <main>
         {% block main %}
         {% endblock %}
-    </main>
- 
 
+    </main>
     <script>
-        const hamMenu = document.querySelector(".ham-menu");
-        const showScreenMenu = document.querySelector(".off-screen");
+        const hamMenu = document.querySelector('.ham-menu');
+        const offScreen = document.querySelector('.off-screen');
         hamMenu.addEventListener('click', () => {
-            hamMenu.classList.toggle('active')
-            showScreenMenu.classList.toggle('active')
+            hamMenu.classList.toggle('active');
+            offScreen.classList.toggle('active');
+
         })
-        const toggleDark = document.getElementById('toggleMode');
-        document.querySelector('#toggleMode').innerHTML = 'dark on';
-        toggleDark.addEventListener('click',()=>{
-            
-            document.body.classList.toggle('dark');
-            const nameButtom = document.querySelector('#toggleMode').value;
-            console.log(nameButtom)
+        // the dark mode switch
+        const toggleSwitch = document.getElementById('toggleSwitch');
+        const darkMode = document.querySelector('body');
+
+        toggleSwitch.addEventListener('click', () => {
+            darkMode.classList.toggle('dark');
+        })
+        // give the search bar some features 
+        let searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('keyup', e => {
+            // get the current value from the input element 
+            let currentValue = e.target.value.toLowerCase();
+            // query the search inputs from the page
+            let search = document.querySelectorAll('section');
+            search.forEach(section => {
+                console.log(typeof (section.textContent))
+                if (section.textContent.toLowerCase().includes(currentValue)) {
+                    section.style.display = 'block';
+
+                } else{
+                    document.querySelector('main').style.display = 'none';
+                }
+            })
         })
     </script>
-
 </body>
 
 </html>

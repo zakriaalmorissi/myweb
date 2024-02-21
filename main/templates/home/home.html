@@ -1,58 +1,60 @@
-{% extends "home/layout.html"%}
+{% extends "home/layout.html" %}
+
 
 {% block main %}
+<section class="section">
+    <div class="myprofile">
+        <img src="{{profile.profile.url}}" alt="">
+        <label for="name">Name</label>
+        <p id="name">{{profile.name.first_name}}</p>
+        <label for="bio">Bio</label>
+        <p id="bio">{{ profile.bio }}</p>
+        <label for="number">Number</label>
+        <p id="number">{{profile.phone_number}}</p>
 
-        <div>
-            <section class="first-part">
-                <div class="main-content">
-                    <div class="container">
-                        {% for post in posts %}
-                        <div class="post-content">
-                            <p>{{post.text}}</p>
-                            {% if post.image %}
-                            <img src="{{post.image.url}}" alt="">
-                            {% endif %}
-        
-                        </div>
-                        {% endfor %}
-        
-        
-        
-                    </div>
-                    <div class="right-post">
+    </div>
+    <div class="introduction">
+        <h2>{{ introduction.title}}</h2>
+        <p>{{introduction.text}}</p>
+    </div>
+</section>
 
-                        {% for one in posts %}
-                            <div class="right-content">
-                        
-                                <p>{{ one.text}}</p>
+<section class="section-one">
 
-                                {% if one.image_2 %}
-                                    <img src="{{one.image_2.url}}" alt="">
-                                {% endif %}
+    {% for post in posts %}
+    <div class="post" style="background-image: url( {{post.image.url}});"> 
+        <a href="{% url 'post' post.id %}">
+            <img src="{{post.image.url }}"  alt="">
+            <h2>{{post.title}}</h2>
+            
+        </a>
+    </div>
+    {% endfor %}
+    
+    
 
-                                <p>{{one.text_2}}</p>
+</section>
 
-                                {% if one.image_3 %}
-                                     <img src="{{one.image_3}}" alt="">
-                                {% endif %}
-                                <p>{{post.text_3}}</p>
-                                <a href="{% url 'post' one.id %}">read more</a>
-                        
-                            </div>
-                        {% endfor %}    
-                    </div>
-                </div>
+<section class="section-two">
+    <h1>Section 2</h1>
+    <div class="section-two-container">
+        {% for project in projects %}
+        <div class="left-container">
+            <a href="#">
+                <img src="{{project.image.url}}" alt="">
+                <h2>{{ project.title }}</h2>
+            </a>
+        </div>
+        {% endfor %}
+        <div class="right-container">
         
-            </section>
-            <section class="second-part">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, saepe rem! Veritatis sequi officia quam
-                    corporis.
-                    Quasi, aperiam! Nihil laudantium perspiciatis quis porro minima laboriosam minus maxime illum, odit
-                    voluptas?</p>
-        
-                </section>
 
         </div>
+        hello 
+        
+    </div>
 
+
+</section>
 
 {% endblock %}
