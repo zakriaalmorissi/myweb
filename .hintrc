@@ -3,6 +3,26 @@
     "development"
   ],
   "hints": {
-    "no-inline-styles": "off"
-  }
+    "no-inline-styles": "off",
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "height: fit-content",
+          "zoom"
+        ]
+      }
+    ]
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_chr <= 120",
+    "not chrome <= 121",
+    "not edge <= 121",
+    "not firefox <= 122",
+    "not safari <= 17.3",
+    "not samsung <= 23",
+    "not ios_saf <= 17.3"
+  ]
 }

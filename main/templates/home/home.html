@@ -14,7 +14,7 @@
 
     </div>
     <div class="introduction">
-        <h2>{{ introduction.title}}</h2>
+        <h2>{{introduction.title}}</h2>
         <p>{{introduction.text}}</p>
     </div>
 </section>
@@ -23,34 +23,42 @@
 
     {% for post in posts %}
     <div class="post" style="background-image: url( {{post.image.url}});"> 
+        
         <a href="{% url 'post' post.id %}">
             <img src="{{post.image.url }}"  alt="">
-            <h2>{{post.title}}</h2>
-            
+            <h2>{{post.title}}</h2>   
         </a>
+    
     </div>
     {% endfor %}
-    
-    
-
 </section>
 
 <section class="section-two">
     <h1>Section 2</h1>
     <div class="section-two-container">
-        {% for project in projects %}
+       
         <div class="left-container">
+            <h1>Latest Updates</h1>
+            {% for project in projects %}
             <a href="#">
                 <img src="{{project.image.url}}" alt="">
                 <h2>{{ project.title }}</h2>
             </a>
+            {% endfor %}
+        </div>
+
+        {% for video in videos %}
+        <div class="right-container">
+            <video  autoplay muted controls>
+                <source src="{{video.video.url}}" type="video/mp4">
+            </video>
+            <a href="#">
+                {{ video.title }}
+            </a>
+        
         </div>
         {% endfor %}
-        <div class="right-container">
         
-
-        </div>
-        hello 
         
     </div>
 
