@@ -118,11 +118,16 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
-STSTICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
-]
+
+STSTICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/media')
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'login'
+
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

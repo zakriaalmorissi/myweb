@@ -377,10 +377,8 @@ main {
     background-color: whitesmoke;
     margin-left: 4%;
     width: 62%;
-    height: 22rem;
     border-radius: 4px;
     padding: 0.9rem;
-    overflow-y: scroll;
     white-space: pre-wrap;
 
 }
@@ -396,6 +394,19 @@ main {
     line-break: auto;
     margin-bottom: 1rem;
 
+}
+@media only screen and (max-width: 1090px){
+    .myprofile{
+        width: 40%;
+        height: 23rem;
+        margin-left: 20%;
+        margin-bottom: 1rem;
+
+    }
+    .introduction {
+        width: 95%;
+        margin-left: 0;
+    }
 }
 
 @media only screen and (max-width: 580px) {

@@ -6,6 +6,7 @@
     --main-bg-color: rgba(252, 252, 252, 0.63);
     --text-color: white;
     --body-text-color: black;
+    --log-color: rgba(0, 166, 255, 0.828);
 
 }
 
@@ -39,6 +40,7 @@ body.dark {
     --main-bg-color: rgba(0, 0, 0, 0.279);
     --text-color: white;
     --body-text-color: white;
+    --log-color: rgba(0, 166, 255, 0.454);
 
 }
 
@@ -63,6 +65,7 @@ nav {
   
 }
 
+
 /* Positioning for specific elements within the navigation bar */
 .ham-menu {
     /* ham-menu for the slide bar */
@@ -75,7 +78,7 @@ nav {
     cursor: pointer;
     border-radius: 50%;
     padding: 10px;
-    margin-left: 1%;
+   
     /* Added margin-left for better alignment */
 }
 
@@ -125,27 +128,38 @@ nav {
 }
 
 nav h1 {
-    position: relative;
-    left: 42%;
+    margin-left: 40%;
+   
 }
 
 
-/* style the login in nav bar */
+/* style the login and the profile in nav bar */
 .login {
+    margin-left: auto;
+    text-decoration: none;
+    background-color: var(--log-color);
+    border-radius: 5px;
+    color: white;
+    padding: 0.5rem;
+
+
+}
+.profile-page {
     position: relative;
     margin-left:auto;
     color: white;
     width: 2.5rem;
     height: 2.5rem;
-    
+   
 }
 
-.login-profile {
+.profile-page img {
     position: absolute;
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+
 }
 
 
@@ -211,7 +225,7 @@ nav h1 {
 #toggleSwitch {
     appearance: none;
     position: relative;
-    background-color: gray;
+    background-color: rgba(17, 252, 29, 0.745);
     width: 40px;
     height: 23px;
     outline: none;
@@ -233,7 +247,7 @@ nav h1 {
 }
 
 #toggleSwitch:checked {
-    background-color: green;
+    background-color: rgb(119, 119, 119);
 }
 
 #toggleSwitch:checked::after {
@@ -275,9 +289,16 @@ main {
     }
 
     nav h1 {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        position: relative;
         left: 25%;
-        font-size: 0.9rem;
-        font-weight: 300;
+        margin-left: 0;
+        font-size: 1rem;
+        font-weight: 400;
+        font-style: oblique;
+    }
+    nav h1.active {
+        display: none;
     }
    
 
@@ -359,7 +380,6 @@ main {
     height: 22rem;
     border-radius: 4px;
     padding: 0.9rem;
-    overflow-y: scroll;
     white-space: pre-wrap;
 
 }
@@ -375,6 +395,15 @@ main {
     line-break: auto;
     margin-bottom: 1rem;
 
+}
+@media only screen and (max-width: 1050px){
+    .myprofile{
+        width: 70%;
+        height: 23rem;
+    }
+    .introduction {
+        width: 90%;
+    }
 }
 
 @media only screen and (max-width: 580px) {
@@ -461,7 +490,8 @@ main {
     }
 
     .post {
-        width: 15rem;
+        width: 13rem;
+        border-radius: 5px;
         height: 21rem;
     }
 }
@@ -604,9 +634,45 @@ form {
     gap: 1rem;
     margin-right: 2rem;
 }
-label {
-    color: gray;
-    margin-bottom: 0.2rem;
+@media only screen and (max-width=480px){
+    form {
+        margin-right: 0;
+    }
+}
+
+form button {
+    width: 42%;
+    padding: 0.5rem;
+    background-color: rgba(32, 95, 254, 0.98);
+    color: white;
+    margin-bottom: 1rem;
+    border: 0.5px solid white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.login-form {
+    height: 25rem;
+    margin: 1rem;
+    padding: 1rem;
+}
+.login-form h2,
+.sign-form h2 {
+    color: rgb(104, 104, 104);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.login-form input, 
+.sign-form input {
+    width: 70%;
+    height: 2rem;
+    border: 1px gray;
+    border-radius: 6px;
+    padding: 0.5rem;
+    background-color: rgb(225, 230, 234);
+
+
 }
 
 .user-image {
@@ -619,7 +685,7 @@ label {
     height: 15rem;
     overflow: hidden;
     border: 0.1px solid rgb(51, 191, 251);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     box-shadow: 0px 0px 3px gray ;
     border-radius: 2px;
 }
@@ -639,14 +705,16 @@ label {
     width: 60%;
     height: 2rem;
     margin-bottom: 1rem;
+    padding-left: 0.5rem;
 }
 
-.user-profile  button{
+.user-profile  button,
+.cancel-button {
     width: 40%;
     padding: 0.5rem;
     background-color: rgba(32, 95, 254, 0.98);
     color: white;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     border: 0.5px solid white;
     border-radius: 6px;
     cursor: pointer;
@@ -655,5 +723,13 @@ label {
     font-style: italic;
     font-weight: 400;
     color: gray;
+}
+.delete-button {
+    width: 20%;
+    background-color: rgb(234, 234, 234);
+    border: 1px white;
+    border-radius: 2px ;
+    padding: 0.2rem;
+    
 }
 

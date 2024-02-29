@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import *
 from .forms import LoginForm, SignForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -34,7 +35,7 @@ def home(request):
         user_image = None
 
     context = {
-        'myprofile': profile,
+        'myprofile': profile, 
         'introduction':introduction,
         'posts': posts,
         'projects': category_posts,
@@ -47,7 +48,7 @@ def home(request):
 
 def post_view(request,id):
     # render the post by its targeted id
-    post = Post.objects.get(pk=id)
+    post = get_object_or_404(Post,pk=id)
     context = {'form':post}
     return render(request,'home/post.html',context)
 
@@ -96,7 +97,7 @@ def signup_view(request):
         form = SignForm()
     return render(request,'register/signup.html',{'form':form})
 
-
+@login_required
 def user_profile_view(request):
     username = request.user
     # get the user inputs 

@@ -9,29 +9,30 @@
     {% if profile.name %}
         <label for="fileInput" class="label-image">
             {% if profile.image %}
-            <img src="{{profile.image.url}}" alt="{% static '/system/profile.png' %}"></label>
+            <img src="{{profile.image.url}}" alt="" id="imageFile"></label>
             <input type="file" name="fileInput" class="user-image" id="fileInput" accept="image/*" value="{{ profile.image}}">
             <input type="submit" value="delete" name="delete" class="delete-button">
             {% else %}
-            <img src="{% static '/system/profile.png' %}" alt=""></label>
+            <img src="{% static '/system/profile.png' %}" alt="" id="imageFile"></label>
             <input type="file" name="fileInput" class="user-image" id="fileInput" accept="image/*" value="{{profile.image }}">
             {% endif %}
         <input type="text" id="input-names" name="profile-name" class="user-name" value="{{profile.name}}">
         <input type="text" class="user-bio" name="bio" placeholder="bio" value="{{profile.bio}}">
-        <button type="submit">Edit</button>
+        <button type="submit" id="submitButton1">Edit</button>
         <input type="submit" value="cancel" name="cancel" class="cancel-button">
 
     {% else %}
         <label for="fileInput" class="label-image">
             {% if profile.image %}
-            <img src="{{profile.image.url}}" alt=""></label>
+            <img src="{{profile.image.url}}" alt="" id="imageFile"></label>
         {% else %}
-        <img src="{% static '/system/profile.png' %}" alt=""></label>
+        <img src="{% static '/system/profile.png' %}" alt="" id="imageFile"></label>
         {% endif %}
         <input type="file" name="fileInput" class="user-image" id="fileInput" accept="image/*">
-        <input type="text" id="input-name" name="profile-name" class="user-name" placeholder="name">
+        <input type="text" id="input-name" name="profile-name" class="user-name" placeholder="name" required>
         <input type="text" class="user-bio" name="bio" placeholder="bio" value="{{profile.bio}}"  >
-        <button type="submit">Create</button>
+        <button type="submit" id="submitButton2">Create</button>
+        <input type="submit" value="cancel" name="cancel" class="cancel-button">
 
     {% endif %}
     
