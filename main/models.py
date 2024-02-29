@@ -1,6 +1,5 @@
 from django.db import models 
-from django.contrib.auth.models import User
-
+from django.contrib.auth.models import User, AbstractUser
 
 # create models for personal data  
 class Myprofile(models.Model):
@@ -62,3 +61,24 @@ class Post(models.Model):
 
     def __str__(self):
         return f"Post by {self.author.username} ({self.created_at})"
+    
+
+#=======================================================================================================================
+    
+# give the user the chance to make a profile
+class UserProfile(models.Model):
+    user_profile = models.OneToOneField(User,on_delete=models.CASCADE,verbose_name='User profile')
+    name = models.CharField(max_length=20, blank=True, null=True)
+    bio = models.CharField(max_length=50, blank=True, null=True)
+    image = models.ImageField(upload_to='user_images',blank=True)
+
+
+    class Meta:
+        verbose_name = 'User profile'
+        verbose_name_plural = 'User profiles'
+
+    def __str__(self):
+        return f'{self.user_profile.username}: {self.name} {self.bio}'
+    
+
+

@@ -20,8 +20,18 @@
                 <span></span>
                 <span></span>
             </div>
-            <h1>Zakweb</h1>
-            <h3>logout</h3>
+            <h1 id="page-name">Zakweb</h1>
+            {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}" class="profile-page" >
+                {% if profile.image %}
+                    <img src="{{profile.image.url}}" alt="">
+                {% else %}
+                   <img src="{% static '/system/profile1.png' %}" alt="" >
+                {% endif %}
+            </a>
+            {% else %}
+            <a href="{% url 'login' %}" class="login">Login</a>
+            {% endif %}
         </nav>
         <div class="off-screen">
             <ul>
@@ -36,28 +46,37 @@
 
         </div>
 
-        <div id="search-input" class="search-div">
-            <input type="text" id="search" placeholder="Search.." name="search_query" autocomplete="off"
-                spellcheck="false" role="searchbox">
-        </div>
-
+       
 
         </div>
 
     </header>
+        <main>
 
-    <main>
         {% block main %}
         {% endblock %}
 
-    </main>
+        </main>
+
+    
     <script>
         const hamMenu = document.querySelector('.ham-menu');
         const offScreen = document.querySelector('.off-screen');
+        const pageName = document.getElementById('page-name');
         hamMenu.addEventListener('click', () => {
             hamMenu.classList.toggle('active');
             offScreen.classList.toggle('active');
+            pageName.classList.toggle('active');
 
+        })
+        // retrieve the dark mode setting from the local storage when the page loads 
+        window.addEventListener('load',()=>{
+            const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+            const darkMode = document.querySelector('body');
+
+            if (darkModeEnabled){
+                darkMode.classList.add('dark');
+            }
         })
         // the dark mode switch
         const toggleSwitch = document.getElementById('toggleSwitch');
@@ -65,6 +84,12 @@
 
         toggleSwitch.addEventListener('click', () => {
             darkMode.classList.toggle('dark');
+
+
+            // store the dark mode setting in local storage
+            const darkModeEnabled = darkMode.classList.contains('dark');
+            localStorage.setItem('darkMode',darkModeEnabled)
+
         })
         // give the search bar some features 
         let searchInput = document.getElementById('search-input');

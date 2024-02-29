@@ -4,13 +4,13 @@
 {% block main %}
 <section class="section">
     <div class="myprofile">
-        <img src="{{profile.profile.url}}" alt="">
+        <img src="{{myprofile.profile.url}}" alt="">
         <label for="name">Name</label>
-        <p id="name">{{profile.name.first_name}}</p>
+        <p id="name">{{myprofile.name.first_name}}</p>
         <label for="bio">Bio</label>
-        <p id="bio">{{ profile.bio }}</p>
+        <p id="bio">{{ myprofile.bio }}</p>
         <label for="number">Number</label>
-        <p id="number">{{profile.phone_number}}</p>
+        <p id="number">{{myprofile.phone_number}}</p>
 
     </div>
     <div class="introduction">

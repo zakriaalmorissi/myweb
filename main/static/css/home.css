@@ -1,4 +1,3 @@
-
 /* Define CSS variables for reusability */
 :root {
     --bg-color: rgba(255, 255, 255, 0.832);
@@ -7,15 +6,20 @@
     --main-bg-color: rgba(252, 252, 252, 0.63);
     --text-color: white;
     --body-text-color: black;
+    --log-color: rgba(0, 166, 255, 0.828);
 
 }
 
-/* Apply default styles to all elements */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
+  
 }
+
+/* Apply default styles to all elements */
+
 
 /* Apply font styles to the entire document */
 body {
@@ -23,7 +27,9 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
     color: var(--body-text-color);
-    overflow-x: hidden;
+    width: 100vw;
+    max-width: 100vw;
+ 
 }
 
 /* set the dark theme colors*/
@@ -34,6 +40,7 @@ body.dark {
     --main-bg-color: rgba(0, 0, 0, 0.279);
     --text-color: white;
     --body-text-color: white;
+    --log-color: rgba(0, 166, 255, 0.454);
 
 }
 
@@ -41,19 +48,23 @@ body.dark {
 
 
 /* Styling for the navigation bar */
+header {
+    width: 100vw;
+}
 nav {
     display: flex;
     position: fixed;
     top: 0;
     z-index: 1;
-    padding: 1rem;
+    padding: 0.6rem;
     background-color: var(--nav-bg-color);
     color: var(--text-color);
     align-items: center;
     box-shadow: 4px 4px 4px var(--shadow-color);
     width: 100%;
-    /* Stretch to full width */
+  
 }
+
 
 /* Positioning for specific elements within the navigation bar */
 .ham-menu {
@@ -67,11 +78,8 @@ nav {
     cursor: pointer;
     border-radius: 50%;
     padding: 10px;
-    margin-left: 1%;
+   
     /* Added margin-left for better alignment */
-}
-.ham-menu:hover {
-    background-color: rgba(240, 248, 255, 0.527);
 }
 
 .ham-menu span {
@@ -120,43 +128,42 @@ nav {
 }
 
 nav h1 {
-    position: relative;
-    left: 40%;
+    margin-left: 40%;
+   
 }
 
-nav h2 {
-    position: relative;
-    left: 1%;
-}
 
-nav h3 {
+/* style the login and the profile in nav bar */
+.login {
     margin-left: auto;
-    /* Aligns h3 to the right */
+    text-decoration: none;
+    background-color: var(--log-color);
+    border-radius: 5px;
+    color: white;
+    padding: 0.5rem;
+
+
 }
+.profile-page {
+    position: relative;
+    margin-left:auto;
+    color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+   
+}
+
+.profile-page img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
 
 /* the search bar */
-.search-div {
-    position: relative;
-    left: 42%;
-    margin-top: 7rem;
-    background-color: transparent;
-    align-items: center;
-
-}
-
-.search-div input {
-    position: relative;
-    left: -7%;
-    border-width: 0.5px;
-    border-color: var(--body-text-color);
-    border-radius: 8px;
-    outline: none;
-    width: 37%;
-    padding: 0.30rem;
-    font-size: 1rem;
-    background-color: white;
-
-}
 
 
 /*============================================================================*/
@@ -172,7 +179,7 @@ nav h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--nav-bg-color) ;
+    background-color: var(--nav-bg-color);
     color: var(--text-color);
     transform: translate(1%, 0%);
     transition: transform .7s, opacity .5s, left .8s;
@@ -194,8 +201,8 @@ nav h3 {
     color: var(--text-color);
 }
 
-.off-screen li a:hover{
-    width:7rem;
+.off-screen li a:hover {
+    width: 7rem;
     border-radius: 7px;
     background-color: rgb(180, 176, 176);
 }
@@ -218,7 +225,7 @@ nav h3 {
 #toggleSwitch {
     appearance: none;
     position: relative;
-    background-color: gray;
+    background-color: rgba(17, 252, 29, 0.745);
     width: 40px;
     height: 23px;
     outline: none;
@@ -229,7 +236,7 @@ nav h3 {
 #toggleSwitch::after {
     content: '';
     position: absolute;
-    top: 9%;
+    top: 7%;
     left: 10%;
     background-color: azure;
     width: 1.25rem;
@@ -240,7 +247,7 @@ nav h3 {
 }
 
 #toggleSwitch:checked {
-    background-color: green;
+    background-color: rgb(119, 119, 119);
 }
 
 #toggleSwitch:checked::after {
@@ -250,29 +257,73 @@ nav h3 {
 
 /* the main content of the page */
 main {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    width: 100%;
+    width: 100vw;
     align-items: center;
     justify-content: center;
+    margin-top: 9rem;
     margin-left: 2rem;
     background-color: var(--main-bg-color);
+
+}
+
+@media only screen and (max-width: 580px) {
+    * {
+        overflow-x: hidden;      
+    }
+  
+    nav {
+        width: inherit;
+    }
+    .ham-menu {
+        margin-left: 0;
+        width: 40px;
+        height: 40px;
+    }
+    .ham-menu span {
+        width: 24px;
+        height: 1.5px;
+    }
+
+    nav h1 {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        position: relative;
+        left: 25%;
+        margin-left: 0;
+        font-size: 1rem;
+        font-weight: 400;
+        font-style: oblique;
+    }
+    nav h1.active {
+        display: none;
+    }
+   
+
+    main {
+        margin-top: 5rem;
+        width: 100vw;
+        margin-left: -1%;
+    }
+
 
 }
 
 /*============================================================================*/
 .section {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 2%;
     color: black;
     border-bottom: 2px solid rgb(127, 212, 251);
-    width: 100%;
+    width: 100vw;
     padding: 1rem;
     overflow: hidden;
 
 }
+
 .myprofile {
     background-color: rgba(227, 248, 255, 0);
     color: var(--body-text-color);
@@ -289,6 +340,7 @@ main {
 
 
 }
+
 .myprofile img {
     margin-top: 1rem;
     margin-bottom: 0.9rem;
@@ -298,9 +350,11 @@ main {
     object-fit: cover;
 
 }
-.myprofile label{
+
+.myprofile label {
     color: gray;
 }
+
 .myprofile p {
     margin-top: 0.3rem;
     margin-bottom: 0.8rem;
@@ -310,7 +364,8 @@ main {
     cursor: pointer;
     border-bottom: 1px solid rgba(134, 134, 134, 0.983);
 }
-.myprofile p:hover{
+
+.myprofile p:hover {
     border: 1px solid;
     border-radius: 7px;
     background-color: rgba(228, 240, 250, 0.492);
@@ -320,26 +375,47 @@ main {
 
 .introduction {
     background-color: whitesmoke;
-    margin-left: 7%;
-    width: 60%;
-    min-width: 20rem;
-    height: 19rem;
+    margin-left: 4%;
+    width: 62%;
+    height: 22rem;
     border-radius: 4px;
-    padding: 1rem;
+    padding: 0.9rem;
     overflow-y: scroll;
-    scroll-behavior: 1px ;
+    white-space: pre-wrap;
 
 }
+
 .introduction h2 {
     margin-bottom: 1rem;
 }
+
 .introduction p {
     position: relative;
     width: 100%;
     line-height: 1.5rem;
     line-break: auto;
     margin-bottom: 1rem;
-    
+
+}
+
+@media only screen and (max-width: 580px) {
+    .section {
+        width: 100%;
+    }
+
+    .myprofile {
+        display: none;
+        margin: 4%;
+        width: 80%;
+        height: 25rem;
+        margin-bottom: 1rem;
+    }
+
+    .introduction {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+    }
 }
 
 /* =========================================================================*/
@@ -347,13 +423,14 @@ main {
     display: grid;
     grid-auto-flow: column;
     gap: 1%;
-    width: 90%;
+    width: 100vw;
     border-bottom: 1px solid rgb(86, 202, 237);
     padding: 1rem;
     border-radius: 7px;
     overflow-x: scroll;
-    
+
 }
+
 .post {
     color: white;
     position: relative;
@@ -364,14 +441,14 @@ main {
 
 .post:hover {
     box-shadow: 0px 0px 10px rgb(125, 238, 255);
-    
+
 }
 
 .post a {
     display: flex;
     flex-direction: column;
     border: 1px solid gray;
-    border-radius: 5px;   
+    border-radius: 5px;
     width: 100%;
     height: 100%;
     text-decoration: none;
@@ -386,17 +463,29 @@ main {
     overflow: hidden;
 
 }
+
 .post img:hover {
-    zoom:  10;
+    zoom: 10;
 }
+
 .post h2 {
-    color:rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     background-color: rgba(122, 122, 123, 0.33);
     padding: 0.7rem;
     top: 94%;
-    
 
-    
+}
+
+@media only screen and (max-width: 580px) {
+    .section-one {
+        width: 100%;
+    }
+
+    .post {
+        width: 13rem;
+        border-radius: 5px;
+        height: 21rem;
+    }
 }
 
 /*========================================================================*/
@@ -405,10 +494,11 @@ main {
     border-top: 2px solid rgb(86, 202, 237);
     border-bottom: 2px solid rgb(86, 202, 237);
     padding: 1rem;
-    width: 100%;
+    width: 100vw;
     height: fit-content;
-    
+
 }
+
 .section-two h1 {
     position: relative;
     left: 45%;
@@ -419,11 +509,11 @@ main {
     flex-wrap: wrap;
     gap: 2%;
     width: 100%;
-    height: auto;
+    height: 100%;
     margin-top: 3.5rem;
     margin-left: 20%;
-    margin-right: 20%;  
-    
+    margin-right: 20%;
+
 }
 
 .left-container {
@@ -436,13 +526,15 @@ main {
     background-color: rgba(176, 176, 176, 0.37);
     box-shadow: 0px 0px 4px var(--shadow-color);
 }
-.left-container h1{
+
+.left-container h1 {
     position: relative;
     left: 0;
     border-left: 0.5rem solid rgba(255, 255, 0, 0.778);
     padding-left: 0.3rem;
     margin-bottom: 0.5rem;
 }
+
 .left-container a {
     display: flex;
     width: 100%;
@@ -453,10 +545,11 @@ main {
     min-width: 100%;
     cursor: pointer;
 }
+
 .left-container img {
     width: 5rem;
     height: 100%;
-    object-fit:cover;
+    object-fit: cover;
 
 }
 
@@ -483,7 +576,8 @@ main {
     border: 1px solid gray;
 
 }
-.right-container video{
+
+.right-container video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -494,5 +588,140 @@ main {
     font-variant: petite-caps;
     font-size: 1.5rem;
     font-weight: 600;
-    text-decoration: none;  
+    text-decoration: none;
 }
+
+@media only screen and (max-width:480px) {
+    .section-two-container {
+        height: 100%;
+        margin-top: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .left-container {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        margin-left: 0;
+    }
+
+    .right-container {
+        width: 100%;
+        margin: 0 auto;
+
+    }
+    .right-container video {
+        max-width: 100%;
+    }
+}
+
+/* sytle the form element */
+
+form {
+    display: flex;
+    width: 25rem;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 2rem;
+}
+@media only screen and (max-width=480px){
+    form {
+        margin-right: 0;
+    }
+}
+
+form button {
+    width: 42%;
+    padding: 0.5rem;
+    background-color: rgba(32, 95, 254, 0.98);
+    color: white;
+    margin-bottom: 1rem;
+    border: 0.5px solid white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.login-form {
+    height: 25rem;
+    margin: 1rem;
+    padding: 1rem;
+}
+.login-form h2,
+.sign-form h2 {
+    color: rgb(104, 104, 104);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.login-form input, 
+.sign-form input {
+    width: 70%;
+    height: 2rem;
+    border: 1px gray;
+    border-radius: 6px;
+    padding: 0.5rem;
+    background-color: rgb(225, 230, 234);
+
+
+}
+
+.user-image {
+    visibility: hidden;
+    position: absolute;
+}
+
+.label-image {
+    width: 15rem;
+    height: 15rem;
+    overflow: hidden;
+    border: 0.1px solid rgb(51, 191, 251);
+    margin-bottom: 0.5rem;
+    box-shadow: 0px 0px 3px gray ;
+    border-radius: 2px;
+}
+.label-image img {
+    width: 98%;
+    height: 98%;
+    border-radius: 50%;
+    margin-left: 1%;
+    object-fit: cover;
+    object-position: center top;
+
+}
+.user-name,
+.user-bio {
+    border: none;
+    border-bottom: 1.5px solid rgb(212, 207, 207);
+    width: 60%;
+    height: 2rem;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+}
+
+.user-profile  button,
+.cancel-button {
+    width: 40%;
+    padding: 0.5rem;
+    background-color: rgba(32, 95, 254, 0.98);
+    color: white;
+    margin-bottom: 0.5rem;
+    border: 0.5px solid white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.user-profile h2 {
+    font-style: italic;
+    font-weight: 400;
+    color: gray;
+}
+.delete-button {
+    width: 20%;
+    background-color: rgb(234, 234, 234);
+    border: 1px white;
+    border-radius: 2px ;
+    padding: 0.2rem;
+    
+}
+
