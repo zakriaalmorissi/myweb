@@ -395,19 +395,7 @@ main {
     margin-bottom: 1rem;
 
 }
-@media only screen and (max-width: 1090px){
-    .myprofile{
-        width: 40%;
-        height: 23rem;
-        margin-left: 20%;
-        margin-bottom: 1rem;
 
-    }
-    .introduction {
-        width: 95%;
-        margin-left: 0;
-    }
-}
 
 @media only screen and (max-width: 580px) {
     .section {
@@ -448,6 +436,7 @@ main {
     width: 17rem;
     height: 21rem;
     object-fit: cover;
+    overflow: hidden;
 }
 
 .post:hover {
@@ -465,6 +454,7 @@ main {
     text-decoration: none;
     font-size: 0.7rem;
     justify-content: center;
+    overflow-y: hidden;
 }
 
 .post img {
@@ -484,6 +474,7 @@ main {
     background-color: rgba(122, 122, 123, 0.33);
     padding: 0.7rem;
     top: 94%;
+    overflow-y: hidden;
 
 }
 
@@ -600,10 +591,40 @@ main {
     font-size: 1.5rem;
     font-weight: 600;
     text-decoration: none;
+    overflow-y: hidden;
+}
+@media only screen and (max-width: 800px) {
+    .myprofile {
+        width: 40%;
+        height: 23rem;
+        margin-left: 20%;
+        margin-bottom: 1rem;
+
+    }
+
+    .introduction {
+        width: 95%;
+        margin-left: 0;
+    }
+    .section-two-container {
+        flex-wrap: nowrap;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .right-container {
+        width: 60%;
+        min-width: 10%;
+
+    }
+    .left-container {
+        margin-left: 0;
+        width: 15rem;
+    }
 }
 
-@media only screen and (max-width:480px) {
+@media only screen and (max-width:580px) {
     .section-two-container {
+        flex-wrap: wrap;
         height: 100%;
         margin-top: 1rem;
         margin-left: 0;
@@ -625,6 +646,7 @@ main {
         max-width: 100%;
     }
 }
+/*==========================================================================================*/
 
 /* sytle the form element */
 
@@ -637,7 +659,7 @@ form {
     gap: 1rem;
     margin-right: 2rem;
 }
-@media only screen and (max-width=480px){
+@media only screen and (max-width: 480px) {
     form {
         margin-right: 0;
     }
@@ -653,6 +675,8 @@ form button {
     border-radius: 6px;
     cursor: pointer;
 }
+/* style the login and sign up form */
+
 .login-form {
     height: 25rem;
     margin: 1rem;
@@ -677,6 +701,12 @@ form button {
 
 
 }
+.error-message {
+    color: red;
+    font-size: small;
+}
+
+/* style the user profile */
 
 .user-image {
     visibility: hidden;

@@ -39,7 +39,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     category = models.ForeignKey(Category, on_delete= models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Author")
+    author = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name="Author")
     title = models.CharField(max_length=200,default='', verbose_name="Title")
     text = models.TextField(max_length=10000, verbose_name="Text")
     image = models.ImageField(upload_to='images')

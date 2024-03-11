@@ -4,7 +4,7 @@ from .models import *
 from .forms import LoginForm, SignForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 
 
 
@@ -31,6 +31,7 @@ def home(request):
     # upload the user profile image if exists
     if request.user.is_authenticated:
         user_image = UserProfile.objects.filter(user_profile=request.user).first()
+        print(user_image)
     else:
         user_image = None
 
@@ -49,7 +50,14 @@ def home(request):
 def post_view(request,id):
     # render the post by its targeted id
     post = get_object_or_404(Post,pk=id)
-    context = {'form':post}
+    # show the user profile 
+    if request.user.is_authenticated:
+        user_image = UserProfile.objects.filter(user_profile=request.user).first()
+        print(user_image)
+    else:
+        user_image = None
+
+    context = {'form':post,"profile":user_image}
     return render(request,'home/post.html',context)
 
 
@@ -73,10 +81,11 @@ def login_view(request):
                 return redirect('home')
             # if the authentication is None, display  an error message 
             else:
-                form.add_error('username',"invalid username ")
-                form.add_error('password',"invalid password ")
+                error_message = "incorrect username or password" 
+                return render (request,'register/login.html',{'form':form,'error_message':error_message})
         
     else:
+        
         form = LoginForm()
     return render(request,'register/login.html',{'form':form})
 
@@ -89,13 +98,23 @@ def signup_view(request):
         if form.is_valid():
             # save the user data to the database
             user = form.save()
-             
             login(request,user)
             return redirect('home')
-        
+        else:
+            # If the form is not valid, send error messages
+            username_error = form.errors.get('username')
+            password_error = form.errors.get('password2')
+            email_error = form.errors.get('email')
+            if username_error:
+                messages.error(request,username_error)
+            if password_error:
+                messages.error(request,password_error)
+            if email_error:
+                messages.error(request,email_error)
     else:
         form = SignForm()
     return render(request,'register/signup.html',{'form':form})
+
 
 @login_required
 def user_profile_view(request):

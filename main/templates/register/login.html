@@ -1,13 +1,16 @@
 {% extends 'home/layout.html' %}
 
 {% block main %}
-    <form method="post" action="" class="login-form">
+    <form method="post" action="{% url 'login' %}" class="login-form">
         {% csrf_token %}
         <h2>Login</h2>
         <label for="username1">Username</label>
         {{form.username}}
         <label for="login-password1">Password</label>
         {{form.password}}
+        {% if error_message %}
+        <p class="error-message">{{error_message}}</p>
+        {% endif %}
         <button type="submit">Login</button>
         <a href="{% url 'sign_up' %}" >Create an account ?</a>
     </form>

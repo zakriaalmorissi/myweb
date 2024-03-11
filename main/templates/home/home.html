@@ -40,7 +40,7 @@
         <div class="left-container">
             <h1>Latest Updates</h1>
             {% for project in projects %}
-            <a href="#">
+            <a href="{% url 'post' project.id %}">
                 <img src="{{project.image.url}}" alt="">
                 <h2>{{ project.title }}</h2>
             </a>

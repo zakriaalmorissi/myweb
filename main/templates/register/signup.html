@@ -11,7 +11,16 @@
     <label for="password">Password</label>
     {{form.password1}}
     <label for="password2">Confirm password</label>
-    {{form.password2}}
+    {{ form.password2}}
+    <ul>
+        {% if messages %}
+        {% for message in messages %}
+            <li class="error-message">{{ message }}</li>
+        {% endfor %}
+        {% endif %}
+
+    </ul>
+
     <button type="submit">Submit</button>
     <a href="#">already have an account</a>
 </form>
