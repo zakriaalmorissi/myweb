@@ -328,7 +328,7 @@ main {
     background-color: rgba(227, 248, 255, 0);
     color: var(--body-text-color);
     position: relative;
-    margin-left: 4%;
+    margin-left: 5%;
     width: 18rem;
     min-width: 12rem;
     height: 22rem;
@@ -585,15 +585,16 @@ main {
     object-fit: cover;
 }
 
-.right-container a {
+.right-container p {
     padding: 0.5rem;
     font-variant: petite-caps;
     font-size: 1.5rem;
     font-weight: 600;
-    text-decoration: none;
     overflow-y: hidden;
+    color: var(--body-text-color);
+    background-color: rgba(225, 221, 221, 0.941);
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
     .myprofile {
         width: 40%;
         height: 23rem;
@@ -606,21 +607,25 @@ main {
         width: 95%;
         margin-left: 0;
     }
+
     .section-two-container {
         flex-wrap: nowrap;
         margin-left: 0;
         margin-right: 0;
     }
+
     .right-container {
         width: 60%;
         min-width: 10%;
 
     }
+
     .left-container {
         margin-left: 0;
         width: 15rem;
     }
 }
+
 
 @media only screen and (max-width:580px) {
     .section-two-container {

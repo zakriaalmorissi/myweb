@@ -10,16 +10,7 @@ from django.contrib import messages
 
 def home(request):
     # upload my profolio information
-    try:
-        id = 2
-        profile = Myprofile.objects.get(id=id)
-
-    except Myprofile.DoesNotExist:
-        # loop over the objects and catch just one object
-        profiles = Myprofile.objects.all()
-        for profile in profiles:
-            profile = profile
-
+    profile = get_object_or_404(Myprofile,id=2)
 
     introduction = Introduction.objects.get(id=1)
     # upload all posts to the home page     
@@ -53,7 +44,6 @@ def post_view(request,id):
     # show the user profile 
     if request.user.is_authenticated:
         user_image = UserProfile.objects.filter(user_profile=request.user).first()
-        print(user_image)
     else:
         user_image = None
 
