@@ -1,6 +1,6 @@
 /* Define CSS variables for reusability */
 :root {
-    --bg-color: rgba(255, 255, 255, 0.832);
+    --bg-color: rgba(255, 251, 251, 0.726);
     --shadow-color: rgb(184, 184, 184);
     --nav-bg-color: rgb(17, 122, 233);
     --main-bg-color: rgba(252, 252, 252, 0.63);
@@ -34,10 +34,10 @@ body {
 
 /* set the dark theme colors*/
 body.dark {
-    --bg-color: rgb(19, 18, 18);
-    --shadow-color: rgba(0, 0, 0, 0.337);
-    --nav-bg-color: rgba(46, 46, 46, 0.666);
-    --main-bg-color: rgba(0, 0, 0, 0.279);
+    --bg-color: rgb(41, 39, 39);
+    --shadow-color: rgb(82, 80, 80);
+    --nav-bg-color: rgb(7, 92, 196);
+    --main-bg-color: rgba(50, 50, 50, 0.018);
     --text-color: white;
     --body-text-color: white;
     --log-color: rgba(0, 166, 255, 0.454);
@@ -55,7 +55,7 @@ nav {
     display: flex;
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 2;
     padding: 0.6rem;
     background-color: var(--nav-bg-color);
     color: var(--text-color);
@@ -190,10 +190,15 @@ nav h1 {
     color: var(--text-color);
     top: 2rem;
     gap: 1rem;
-    right: 2.3rem;
+    right: 1.5rem;
     display: inherit;
     flex-direction: column;
     list-style: none;
+}
+
+.off-screen li {
+    width: 100%;
+    padding: 0.7rem;
 }
 
 .off-screen ul a {
@@ -201,10 +206,9 @@ nav h1 {
     color: var(--text-color);
 }
 
-.off-screen li a:hover {
-    width: 7rem;
+.off-screen li:hover {
     border-radius: 7px;
-    background-color: rgb(180, 176, 176);
+    background-color: rgba(180, 176, 176, 0.384);
 }
 
 .off-screen.active {
@@ -413,7 +417,7 @@ main {
     .introduction {
         width: 100%;
         height: auto;
-        margin-left: 0;
+        margin-left: 1rem;
     }
 }
 
@@ -421,7 +425,7 @@ main {
 .section-one {
     display: grid;
     grid-auto-flow: column;
-    gap: 1%;
+    gap: 0.5rem;
     width: 100vw;
     border-bottom: 1px solid rgb(86, 202, 237);
     padding: 1rem;
@@ -583,6 +587,7 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 .right-container p {

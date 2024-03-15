@@ -1,28 +1,43 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.models import User
 from .models import *
 from .forms import LoginForm, SignForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.utils import timezone
+from datetime import timedelta
 
 
 
 def home(request):
-    # upload my profolio information
-    profile = get_object_or_404(Myprofile,id=2)
+    
 
-    introduction = Introduction.objects.get(id=1)
+    # upload my profolio information
+    try:
+        profile = Myprofile.objects.get(id=1)  
+    
+    except Myprofile.DoesNotExist:
+       profile = dynamic_profile()
+    
+
+    try:
+        introduction = Introduction.objects.get(id=4)
+
+    except Introduction.DoesNotExist:
+       introduction = dynamic_intro()
+        
+
     # upload all posts to the home page     
     posts = Post.objects.all()
-    # upload the posts that are related to the specified category 
-    category_posts = Post.objects.filter(category__name="New projects")
+    # upload the most recent posts 
+    recent_posts  = latest_posts()
+
     # upload the posts that are related to the videos category
     video_category = Post.objects.filter(category__name="videos")
     # upload the user profile image if exists
     if request.user.is_authenticated:
         user_image = UserProfile.objects.filter(user_profile=request.user).first()
-        print(user_image)
+        
     else:
         user_image = None
 
@@ -30,7 +45,7 @@ def home(request):
         'myprofile': profile, 
         'introduction':introduction,
         'posts': posts,
-        'projects': category_posts,
+        'projects': recent_posts,
         'videos':video_category,
         'profile':user_image
     }
@@ -143,14 +158,52 @@ def user_profile_view(request):
             # save the new record
             user.save()
 
-       # return the user to the home after a successfull submission
-        profile = UserProfile.objects.filter(user_profile=username).first()
-        context = {'profile':profile,'user':username}
-        return render(request,'register/profile.html',context)
     
     # render the profile related to the user 
     profile = UserProfile.objects.filter(user_profile=username).first() 
     context = {'profile':profile,'user':username}
     return render(request,'register/profile.html',context)
 
+# =================================================================================================================================================================
 
+
+def dynamic_profile():
+    # get the first profile in the database 
+    profile = Myprofile.objects.first()
+    # if there is nothing return none 
+    if not profile :
+        profile = None
+
+    return profile
+
+def dynamic_intro():
+    # get the first introduction in the database 
+    introduction = Introduction.objects.first()
+    # if no introduction in the database , create one 
+    if not introduction:
+        introduction = Introduction(title= "Introduction",text='no text')
+
+    return introduction
+
+
+
+def latest_posts():
+    # Get the current time
+    current_time = timezone.now()
+    
+    # Define a timedelta for the last 7 days
+    time_delta = timedelta(days=7)
+    
+    # Get posts created within the last 7 days
+    recent_posts = Post.objects.filter(created_at__gte=current_time - time_delta)
+    
+    # Order posts by creation time, descending
+    recent_posts = recent_posts.order_by('-created_at')[:10]
+    
+    return recent_posts
+
+
+
+    
+
+        

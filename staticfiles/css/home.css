@@ -1,6 +1,6 @@
 /* Define CSS variables for reusability */
 :root {
-    --bg-color: rgba(255, 255, 255, 0.832);
+    --bg-color: rgba(255, 251, 251, 0.726);
     --shadow-color: rgb(184, 184, 184);
     --nav-bg-color: rgb(17, 122, 233);
     --main-bg-color: rgba(252, 252, 252, 0.63);
@@ -34,10 +34,10 @@ body {
 
 /* set the dark theme colors*/
 body.dark {
-    --bg-color: rgb(19, 18, 18);
-    --shadow-color: rgba(0, 0, 0, 0.337);
-    --nav-bg-color: rgba(46, 46, 46, 0.666);
-    --main-bg-color: rgba(0, 0, 0, 0.279);
+    --bg-color: rgb(41, 39, 39);
+    --shadow-color: rgb(82, 80, 80);
+    --nav-bg-color: rgb(7, 92, 196);
+    --main-bg-color: rgba(50, 50, 50, 0.018);
     --text-color: white;
     --body-text-color: white;
     --log-color: rgba(0, 166, 255, 0.454);
@@ -55,7 +55,7 @@ nav {
     display: flex;
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 2;
     padding: 0.6rem;
     background-color: var(--nav-bg-color);
     color: var(--text-color);
@@ -190,10 +190,15 @@ nav h1 {
     color: var(--text-color);
     top: 2rem;
     gap: 1rem;
-    right: 2.3rem;
+    right: 1.5rem;
     display: inherit;
     flex-direction: column;
     list-style: none;
+}
+
+.off-screen li {
+    width: 100%;
+    padding: 0.7rem;
 }
 
 .off-screen ul a {
@@ -201,10 +206,9 @@ nav h1 {
     color: var(--text-color);
 }
 
-.off-screen li a:hover {
-    width: 7rem;
+.off-screen li:hover {
     border-radius: 7px;
-    background-color: rgb(180, 176, 176);
+    background-color: rgba(180, 176, 176, 0.384);
 }
 
 .off-screen.active {
@@ -328,7 +332,7 @@ main {
     background-color: rgba(227, 248, 255, 0);
     color: var(--body-text-color);
     position: relative;
-    margin-left: 4%;
+    margin-left: 5%;
     width: 18rem;
     min-width: 12rem;
     height: 22rem;
@@ -377,7 +381,6 @@ main {
     background-color: whitesmoke;
     margin-left: 4%;
     width: 62%;
-    height: 22rem;
     border-radius: 4px;
     padding: 0.9rem;
     white-space: pre-wrap;
@@ -396,15 +399,7 @@ main {
     margin-bottom: 1rem;
 
 }
-@media only screen and (max-width: 1050px){
-    .myprofile{
-        width: 70%;
-        height: 23rem;
-    }
-    .introduction {
-        width: 90%;
-    }
-}
+
 
 @media only screen and (max-width: 580px) {
     .section {
@@ -422,7 +417,7 @@ main {
     .introduction {
         width: 100%;
         height: auto;
-        margin-left: 0;
+        margin-left: 1rem;
     }
 }
 
@@ -430,7 +425,7 @@ main {
 .section-one {
     display: grid;
     grid-auto-flow: column;
-    gap: 1%;
+    gap: 0.5rem;
     width: 100vw;
     border-bottom: 1px solid rgb(86, 202, 237);
     padding: 1rem;
@@ -445,6 +440,7 @@ main {
     width: 17rem;
     height: 21rem;
     object-fit: cover;
+    overflow: hidden;
 }
 
 .post:hover {
@@ -462,6 +458,7 @@ main {
     text-decoration: none;
     font-size: 0.7rem;
     justify-content: center;
+    overflow-y: hidden;
 }
 
 .post img {
@@ -481,6 +478,7 @@ main {
     background-color: rgba(122, 122, 123, 0.33);
     padding: 0.7rem;
     top: 94%;
+    overflow-y: hidden;
 
 }
 
@@ -589,18 +587,54 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 5px;
 }
 
-.right-container a {
+.right-container p {
     padding: 0.5rem;
     font-variant: petite-caps;
     font-size: 1.5rem;
     font-weight: 600;
-    text-decoration: none;
+    overflow-y: hidden;
+    color: var(--body-text-color);
+    background-color: rgba(225, 221, 221, 0.941);
+}
+@media only screen and (max-width: 900px) {
+    .myprofile {
+        width: 40%;
+        height: 23rem;
+        margin-left: 20%;
+        margin-bottom: 1rem;
+
+    }
+
+    .introduction {
+        width: 95%;
+        margin-left: 0;
+    }
+
+    .section-two-container {
+        flex-wrap: nowrap;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .right-container {
+        width: 60%;
+        min-width: 10%;
+
+    }
+
+    .left-container {
+        margin-left: 0;
+        width: 15rem;
+    }
 }
 
-@media only screen and (max-width:480px) {
+
+@media only screen and (max-width:580px) {
     .section-two-container {
+        flex-wrap: wrap;
         height: 100%;
         margin-top: 1rem;
         margin-left: 0;
@@ -622,6 +656,7 @@ main {
         max-width: 100%;
     }
 }
+/*==========================================================================================*/
 
 /* sytle the form element */
 
@@ -634,7 +669,7 @@ form {
     gap: 1rem;
     margin-right: 2rem;
 }
-@media only screen and (max-width=480px){
+@media only screen and (max-width: 480px) {
     form {
         margin-right: 0;
     }
@@ -650,6 +685,8 @@ form button {
     border-radius: 6px;
     cursor: pointer;
 }
+/* style the login and sign up form */
+
 .login-form {
     height: 25rem;
     margin: 1rem;
@@ -674,6 +711,12 @@ form button {
 
 
 }
+.error-message {
+    color: red;
+    font-size: small;
+}
+
+/* style the user profile */
 
 .user-image {
     visibility: hidden;

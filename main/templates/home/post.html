@@ -6,13 +6,27 @@
     <section class="main-post">
         <div class="post-contents" >
             <h2>{{form.title}}</h2>
-            <p>{{form.text}}</p>
+            {% if form.video %}
+            <video controls>
+                <source src="{{ form.video.url }}" type="video/mp4">
+            </video>
+            {% else %}
             <img src="{{form.image.url}}" alt="">
-            {% if form.image_2 %}
-            <p> {{from.text_2}}</p>
-            <img src="{{form.image_2.url}}" alt="">
             {% endif %}
-
+            <p>{{form.text}}</p>
+            {% if form.image_2 %}
+            <img src="{{form.image_2.url}}" alt="">
+            {% elif form.image_3 %}
+            <img src="{{ form.image_3 }}" alt="">
+            {% endif %}
+            <p> {{form.text_2}}</p>
+            {% if form.video_2 %}
+            <video controls>
+                <source src="{{ form.video_2.url }}" type="video/mp4">
+            </video>
+            {% endif %}
+            <p>{{form.text_3}}</p>
+            
         </div>
 
     </section>

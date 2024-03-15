@@ -20,15 +20,12 @@
 </section>
 
 <section class="section-one">
-
     {% for post in posts %}
     <div class="post" style="background-image: url( {{post.image.url}});"> 
-        
         <a href="{% url 'post' post.id %}">
             <img src="{{post.image.url }}"  alt="">
             <h2>{{post.title}}</h2>   
         </a>
-    
     </div>
     {% endfor %}
 </section>
@@ -55,14 +52,11 @@
             <p>
                 {{ video.title }}
             </p>
-        
         </div>
         {% endfor %}
         
         
     </div>
-
-
 </section>
 
 {% endblock %}
