@@ -62,7 +62,6 @@ nav {
     align-items: center;
     box-shadow: 4px 4px 4px var(--shadow-color);
     width: 100%;
-  
 }
 
 
@@ -751,11 +750,11 @@ form button {
     padding-left: 0.5rem;
 }
 
-.user-profile  button,
+.user-profile button,
 .cancel-button {
     width: 40%;
     padding: 0.5rem;
-    background-color: rgba(32, 95, 254, 0.98);
+    background-color: #205ffefa;
     color: white;
     margin-bottom: 0.5rem;
     border: 0.5px solid white;

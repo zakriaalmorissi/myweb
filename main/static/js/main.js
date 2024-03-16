@@ -32,6 +32,8 @@
             localStorage.setItem('darkMode',darkModeEnabled)
 
         })
+        //============= profile page =================================
+
 
         // upload the image to page once the user selects one 
 
@@ -50,9 +52,43 @@
                
             }
             reader.readAsDataURL(currentImage);
-    
+        })
+        
+        // by default disable the submit button and change its color 
+        function Disable(){
+            document.getElementById("submitButton").disabled = true;
+            document.getElementById("submitButton").style.backgroundColor = 'gray';
+            document.getElementById("submitButton").style.color = 'lightgray';
+        }
 
-    })
+        Disable()
+          // get the value of user inputs 
+        const userName = document.getElementById("input-name");
+        const userBio = document.getElementById("user-bio");
+      
+        // add event listener to disable the submit button unless the user type something 
+        userName.addEventListener('keyup', (e)=>{
+            let currentValue = e.target.value;
+            // prevent the user from submitting empty value or whitespaces 
+            if (currentValue.trim() === '' ){
+            
+            
+                Disable()
+
+            } else  {
+                // enable the button 
+                let submitButton = document.getElementById("submitButton");
+                submitButton.disabled = false;
+                submitButton.style.backgroundColor = '#205ffefa';
+                submitButton.style.color = 'white';
+
+
+            }
+          
+
+
+
+        })
 
     
             
