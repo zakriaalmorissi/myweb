@@ -22,8 +22,8 @@
             <h1 id="page-name">Zakweb</h1>
             {% if user.is_authenticated %}
             <a href="{% url 'profile' %}" class="profile-page" >
-                {% if profile.image %}
-                    <img src="{{profile.image.url}}" alt="">
+                {% if context.profile.image %}
+                    <img src="{{context.profile.image.url}}" alt="">
                 {% else %}
                    <img src="{% static '/system/profile1.png' %}" alt="" >
                 {% endif %}

@@ -33,7 +33,22 @@
 
         })
         //============= profile page =================================
+          // function for enabling the submit button 
+           function enableButton(){
+                    let submitButton = document.getElementById("submitButton");
+                    submitButton.disabled = false;
+                    submitButton.style.backgroundColor = '#205ffefa';
+                    submitButton.style.color = 'white';
 
+                }
+        
+        // by default disable the submit button and change its color 
+        function Disable(){
+            document.getElementById("submitButton").disabled = true;
+            document.getElementById("submitButton").style.backgroundColor = 'gray';
+            document.getElementById("submitButton").style.color = 'lightgray';
+        }
+        Disable()
 
         // upload the image to page once the user selects one 
 
@@ -41,6 +56,8 @@
         const imageFile = document.getElementById('imageFile');
 
         fileInput.addEventListener('change',function (e){
+            // enable the submit button 
+           
             // access the selected file from the input element
             let currentImage = e.target.files[0];
             
@@ -52,16 +69,10 @@
                
             }
             reader.readAsDataURL(currentImage);
+            enableButton()
         })
-        
-        // by default disable the submit button and change its color 
-        function Disable(){
-            document.getElementById("submitButton").disabled = true;
-            document.getElementById("submitButton").style.backgroundColor = 'gray';
-            document.getElementById("submitButton").style.color = 'lightgray';
-        }
-
-        Disable()
+      
+    
           // get the value of user inputs 
         const userName = document.getElementById("input-name");
         const userBio = document.getElementById("user-bio");
@@ -77,19 +88,14 @@
 
             } else  {
                 // enable the button 
-                let submitButton = document.getElementById("submitButton");
-                submitButton.disabled = false;
-                submitButton.style.backgroundColor = '#205ffefa';
-                submitButton.style.color = 'white';
+                enableButton()
+             
+                    
 
-
-            }
-          
-
-
+                }
 
         })
 
-    
+  
             
       

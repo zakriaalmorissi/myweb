@@ -1,5 +1,6 @@
 from django.db import models 
 from django.contrib.auth.models import User, AbstractUser
+from django.utils import timezone
 
 # create models for personal data  
 class Myprofile(models.Model):
@@ -19,6 +20,12 @@ class Myprofile(models.Model):
 
 
 class Introduction(models.Model):
+    CHOICES = [
+        ('PI','Page Introduction'),
+        ('PR','Project Introduction'),
+        ('PO', 'Post Introduction')
+    ]
+    category = models.CharField(max_length=5, choices=CHOICES)
     title =  models.CharField(max_length=20)
     text = models.TextField(max_length=10000)
 
@@ -34,7 +41,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     def __str__(self):
-        return f"{self.name}"
+        return f" {self.id}: {self.name}"
 
 
 class Post(models.Model):
@@ -49,8 +56,8 @@ class Post(models.Model):
     text_3 = models.TextField(max_length=10000, blank=True, verbose_name="Third Text")
     image_3 = models.ImageField(upload_to='images/', blank=True, null=True)
     video_2 = models.FileField(upload_to='videos/', blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created At", db_index=True)
-    updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated At")
+    created_at = models.DateTimeField(default=timezone.now, verbose_name="Created At", db_index=True)
+    updated_at = models.DateTimeField(default=timezone.now, verbose_name="Updated At")
     
     class Meta:
         verbose_name = "Post"
@@ -71,6 +78,8 @@ class UserProfile(models.Model):
     name = models.CharField(max_length=20, blank=True, null=True)
     bio = models.CharField(max_length=50, blank=True, null=True)
     image = models.ImageField(upload_to='user_images',blank=True)
+    create_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
 
 
     class Meta:

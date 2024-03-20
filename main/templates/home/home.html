@@ -6,21 +6,21 @@
     <div class="myprofile">
         <img src="{{myprofile.profile.url}}" alt="">
         <label for="name">Name</label>
-        <p id="name">{{myprofile.name.first_name}}</p>
+        <p id="name">{{context.myprofile.name.first_name}}</p>
         <label for="bio">Bio</label>
-        <p id="bio">{{ myprofile.bio }}</p>
+        <p id="bio">{{ context.myprofile.bio }}</p>
         <label for="number">Number</label>
-        <p id="number">{{myprofile.phone_number}}</p>
+        <p id="number">{{context.myprofile.phone_number}}</p>
 
     </div>
     <div class="introduction">
-        <h2>{{introduction.title}}</h2>
-        <p>{{introduction.text}}</p>
+        <h2>{{context.introduction.title}}</h2>
+        <p>{{context.introduction.text}}</p>
     </div>
 </section>
 
 <section class="section-one">
-    {% for post in posts %}
+    {% for post in context.posts %}
     <div class="post" style="background-image: url( {{post.image.url}});"> 
         <a href="{% url 'post' post.id %}">
             <img src="{{post.image.url }}"  alt="">
@@ -36,7 +36,7 @@
        
         <div class="left-container">
             <h1>Latest Updates</h1>
-            {% for project in projects %}
+            {% for project in context.projects %}
             <a href="{% url 'post' project.id %}">
                 <img src="{{project.image.url}}" alt="">
                 <h2>{{ project.title }}</h2>
@@ -44,7 +44,7 @@
             {% endfor %}
         </div>
 
-        {% for video in videos %}
+        {% for video in context.videos %}
         <div class="right-container">
             <video  autoplay muted controls>
                 <source src="{{video.video.url}}" type="video/mp4">

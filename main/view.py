@@ -1,12 +1,9 @@
 from typing import Any
 from django.db.models.query import QuerySet
-from django.http import HttpRequest
-from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.utils import timezone
 from datetime import timedelta
@@ -20,7 +17,7 @@ class HomeView(ListView):
 
     """
    
-    template_name = "home/home.html"
+    template_name = "main/home.html"
     context_object_name = "context"
 
     def get_queryset(self):
@@ -37,11 +34,11 @@ class HomeView(ListView):
         recent_posts = self.latest_post()
 
         # retrieve the posts that are related to the video category 
-        video_category = posts.filter(category__name__icontains="videos")
+        video_category = posts.filter(category__name__icontain="videos")
 
         # retrieve the user profile image if exists
         user_image = None
-        if self.request.user.is_authenticated:
+        if self.request.is_authenticated:
             user_image = UserProfile.objects.filter(user_profile=self.request.user).first()
 
         
@@ -136,21 +133,17 @@ class SignupView(View):
             Handle the user errors and notify them where the error is 
             """
             for field, error in form.errors.as_data().items():
+                print(form.errors.as_data())
                 messages.error(request, error[0])
-            return redirect('sign_up')
+            return redirect('signup')
 
 
  
 
-
+@login_required
 class ProfileView(View):
-   
-    template_name = "register/profile.html"
+    template_name = "main/profile.html"
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch( *args, **kwargs)
-    
     def get(self, request):
         username = request.user
         # render the profile related to the user
