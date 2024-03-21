@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
@@ -83,6 +83,9 @@ class PostDetailView(View):
         return render(request,'home/post.html', context)
 
 
+"""
+Render the user account functionalities ---> login, sign up, logout, and profile
+"""
 
 class LoginView(View):
     template_name = "register/login.html"
@@ -142,6 +145,11 @@ class SignupView(View):
 
 
  
+def logout_view(request):
+    # Log the user out and redirect them to the login page
+    logout(request)
+
+    return redirect('login')
 
 
 class ProfileView(View):

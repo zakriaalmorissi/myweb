@@ -2,41 +2,54 @@
 
 {% block main %}
 {% load static %}
-<form method="post" enctype="multipart/form-data" class="user-profile">
-    {% csrf_token %}
-    <h2>My profile</h2>
+<div class="profile--dev">
 
-    {% if profile.name %}
-        <label for="fileInput" class="label-image">
+
+    <aside class="aside-container">
+       <ul>
+            <li>Username: {{ user.username }}</li>
+            <li>Email: {{ user.email }} </li>
+            <li>Date: {{ user.date_joined }}</li>
+
+       </ul>
+
+    </aside>
+
+    <form method="post" enctype="multipart/form-data" class="user-profile">
+        {% csrf_token %}
+        <h2>My profile</h2>
+
+        {% if profile.name %}
+            <label for="fileInput" class="label-image">
+                {% if profile.image %}
+                <img src="{{profile.image.url}}" alt="" id="imageFile"></label>
+                <input type="file" name="fileInput" class="user-image" id="fileInput" accept="image/*" value="{{ profile.image}}">
+                <input type="submit" value="delete" name="delete" class="delete-button">
+                {% else %}
+                <img src="{% static '/system/profile.png' %}" alt="" id="imageFile"></label>
+                <input type="file" name="fileInput" class="user-image" id="fileInput" accept="image/*" value="{{profile.image }}">
+                {% endif %}
+            <input type="text" id="input-name" name="profile-name" class="user-name" value="{{profile.name}}">
+            <input type="text" id="user-bio"   class="user-bio" name="bio" placeholder="bio" value="{{profile.bio}}">
+            <button type="submit" id="submitButton">Edit</button>
+            <input type="submit" value="cancel" name="cancel" class="cancel-button">
+
+        {% else %}
+            <label for="fileInput" class="label-image">
             {% if profile.image %}
-            <img src="{{profile.image.url}}" alt="" id="imageFile"></label>
-            <input type="file" name="fileInput" class="user-image" id="fileInput" accept="image/*" value="{{ profile.image}}">
-            <input type="submit" value="delete" name="delete" class="delete-button">
+                <img src="{{profile.image.url}}" alt="" id="imageFile"></label>
             {% else %}
             <img src="{% static '/system/profile.png' %}" alt="" id="imageFile"></label>
-            <input type="file" name="fileInput" class="user-image" id="fileInput" accept="image/*" value="{{profile.image }}">
             {% endif %}
-        <input type="text" id="input-name" name="profile-name" class="user-name" value="{{profile.name}}">
-        <input type="text" id="user-bio"   class="user-bio" name="bio" placeholder="bio" value="{{profile.bio}}">
-        <button type="submit" id="submitButton">Edit</button>
-        <input type="submit" value="cancel" name="cancel" class="cancel-button">
+            <input type="file" name="fileInput" class="user-image" id="fileInput" accept="image/*">
+            <input type="text" id="input-name" name="profile-name" class="user-name" placeholder="name" required>
+            <input type="text" id="user-bio" class="user-bio" name="bio" placeholder="bio" value="{{profile.bio}}"  >
+            <button type="submit" id="submitButton">Create</button>
+            <input type="submit" value="cancel" name="cancel" class="cancel-button">
 
-    {% else %}
-        <label for="fileInput" class="label-image">
-        {% if profile.image %}
-            <img src="{{profile.image.url}}" alt="" id="imageFile"></label>
-        {% else %}
-        <img src="{% static '/system/profile.png' %}" alt="" id="imageFile"></label>
         {% endif %}
-        <input type="file" name="fileInput" class="user-image" id="fileInput" accept="image/*">
-        <input type="text" id="input-name" name="profile-name" class="user-name" placeholder="name" required>
-        <input type="text" id="user-bio" class="user-bio" name="bio" placeholder="bio" value="{{profile.bio}}"  >
-        <button type="submit" id="submitButton">Create</button>
-        <input type="submit" value="cancel" name="cancel" class="cancel-button">
-
-    {% endif %}
-</form>
+    </form>
 
 
-
+</div>
 {% endblock %}

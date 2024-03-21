@@ -34,11 +34,12 @@
         })
         //============= profile page =================================
           // function for enabling the submit button 
-           function enableButton(){
+        function enableButton(){
                     let submitButton = document.getElementById("submitButton");
                     submitButton.disabled = false;
                     submitButton.style.backgroundColor = '#205ffefa';
                     submitButton.style.color = 'white';
+                    submitButton.innerHTML = 'OK';
 
                 }
         
@@ -50,13 +51,32 @@
         }
         Disable()
 
+        // function to prevent the user from submitting an empty name one editting an input field
+        function preventEmpty(){
+            let name = document.getElementById("input-name").value;
+            if (name.trim()=== ''){
+                return false;
+            } else {
+                return true;
+            }
+        }
+
         // upload the image to page once the user selects one 
 
         const fileInput = document.getElementById('fileInput');
         const imageFile = document.getElementById('imageFile');
 
         fileInput.addEventListener('change',function (e){
+
             // enable the submit button 
+            if (preventEmpty()){
+
+                 enableButton()
+
+            } else {
+
+                Disable()    
+            }
            
             // access the selected file from the input element
             let currentImage = e.target.files[0];
@@ -69,8 +89,9 @@
                
             }
             reader.readAsDataURL(currentImage);
-            enableButton()
+        
         })
+
       
     
           // get the value of user inputs 
@@ -88,11 +109,19 @@
 
             } else  {
                 // enable the button 
-                enableButton()
-             
-                    
+                enableButton()                      
 
                 }
+        })
+        userBio.addEventListener("keyup", ()=>{
+            if (preventEmpty()){
+
+                 enableButton()
+
+            } else {
+
+                Disable() 
+            }
 
         })
 

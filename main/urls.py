@@ -6,5 +6,6 @@ urlpatterns = [
     path('post/<int:id>/',views.PostDetailView.as_view(), name="post"),
     path('login/',views.LoginView.as_view(), name='login'),
     path('signup/',views.SignupView.as_view(), name='sign_up'),
+    path('logout/',views.logout_view, name='logout'),
     path('profile/',views.ProfileView.as_view(), name='profile')
 ]

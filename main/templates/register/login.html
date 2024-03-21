@@ -8,17 +8,10 @@
         {{form.username}}
         <label for="login-password1">Password</label>
         {{form.password}}
-        <ul>
-            {% if messages %}
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
+        {% if error %}
+            <p class="error-message">{{ error }}</p>
 
-            {% endif %}
-
-
-        </ul>
-         
+        {% endif %}
     
         <button type="submit">Login</button>
         <a href="{% url 'sign_up' %}" >Create an account ?</a>
