@@ -402,19 +402,16 @@ main {
 
 @media only screen and (max-width: 580px) {
     .section {
-        width: 100%;
+        width: 100vw;
+        padding: 0;
     }
 
     .myprofile {
         display: none;
-        margin: 4%;
-        width: 80%;
-        height: 25rem;
-        margin-bottom: 1rem;
     }
 
     .introduction {
-        width: 100%;
+        width: 100vw;
         height: auto;
         margin-left: 1rem;
     }
@@ -608,8 +605,8 @@ main {
     }
 
     .introduction {
-        width: 95%;
-        margin-left: 0;
+        width: 100vw;
+        margin-left: 1rem;
     }
 
     .section-two-container {

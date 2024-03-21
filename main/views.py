@@ -1,6 +1,5 @@
-from typing import Any
-from django.db.models.query import QuerySet
-from django.http import HttpRequest
+
+from django.http import HttpRequest, HttpResponse
 from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
@@ -89,7 +88,7 @@ class LoginView(View):
     template_name = "register/login.html"
     # render the login page
     def get(self, request):
-
+    
         form = LoginForm()
         return render(request,self.template_name,{"form":form})
     
@@ -109,9 +108,11 @@ class LoginView(View):
                 return redirect('home')
             # if the authentication is None, display  an error message 
             else:
-                error_message = "incorrect username or password" 
-                return render (request,self.template_name,{'form':form,'error_message':error_message})
-        
+                errer_message = "Invalid Password"
+                return render(request, self.template_name, {"form":form, "error":errer_message})
+                
+              
+        return redirect("login")
     
 class SignupView(View):
     """

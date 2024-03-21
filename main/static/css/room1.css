@@ -2,7 +2,6 @@
 
 .main-post {
     position: relative;
-    left: 1%;
     width: 50vw;
     box-shadow: 0px 0px  4px var(--shadow-color);
 }
@@ -30,7 +29,12 @@
     margin: 1rem;
 }
 @media only screen and (max-width: 580px){
-    .main-post {
-        width: 90vw;
+    main {
+        margin-left: 0;
     }
+    .main-post {
+        width: 100vw;
+        box-shadow: none ;
+    }
+   
 }

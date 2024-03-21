@@ -4,7 +4,7 @@
 {% block main %}
 <section class="section">
     <div class="myprofile">
-        <img src="{{myprofile.profile.url}}" alt="">
+        <img src="{{context.myprofile.profile.url}}" alt="">
         <label for="name">Name</label>
         <p id="name">{{context.myprofile.name.first_name}}</p>
         <label for="bio">Bio</label>
