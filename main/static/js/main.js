@@ -51,7 +51,7 @@
         }
         Disable()
 
-        // function to prevent the user from submitting an empty name one editting an input field
+        // function to prevent the user from submitting an empty name once editting any input field
         function preventEmpty(){
             let name = document.getElementById("input-name").value;
             if (name.trim()=== ''){
